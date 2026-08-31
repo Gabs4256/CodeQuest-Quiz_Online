@@ -1,0 +1,20 @@
+@import url(./style.css);
+
+.cabecalho{
+    display: flex;
+    justify-content: center;   
+    align-items: center; 
+}
+.botao_ranking{
+    font-family: var(--titulo);
+    color: var(--texto);
+    background-color: var(--botao-opcao);
+    text-decoration: none;
+    padding: 20px 40px;
+    border-radius: 10px;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+
+}
+

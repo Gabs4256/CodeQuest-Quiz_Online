@@ -1,0 +1,19 @@
+/* variaveis CSS */
+:root{
+    --fundo-principal: #2C1B4D; /* ROXO */
+    --texto: #FFD166; /* Amarelo */
+    --botao-opcao: #06D6A0; /* verde ciano */
+    --botao-opcao2: #EF476F; /* vermelho */
+    --titulo: 'Fredoka', sans-serif; 
+    --corpo-texto: 'Poppins', sans-serif; 
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: var(--fundo-principal);
+}
