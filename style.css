@@ -1,6 +1,6 @@
 /* variaveis CSS */
 :root{
-    --fundo-principal: #2C1B4D; /* ROXO */
+    --fundo-principal: radial-gradient(circle at center, #2E1B50 0%, #1D1136 60%, #0D0719 100%);
     --texto: #FFD166; /* Amarelo */
     --botao-opcao: #06D6A0; /* verde ciano */
     --botao-opcao2: #EF476F; /* vermelho */
@@ -15,5 +15,7 @@
 }
 
 body{
-    background-color: var(--fundo-principal);
+    background: var(--fundo-principal);
+    background-attachment: fixed;
+    min-height: 100vh;
 }
