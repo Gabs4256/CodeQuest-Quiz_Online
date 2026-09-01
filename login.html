@@ -11,17 +11,25 @@
     <title>CodeQuest | Quiz online</title>
 </head>
 <body>
-    <header>
-        <div class="cabecalho">
-            <a class="botao_ranking" href="./ranking.html">RANKING</a>
-        </div>
+    <header class="cabecalho">
+        <img class="logo" src="./CodeQuest-logo-removebg.svg" alt="Logo CodeQuest | Cérebro amarelo com a escrita do Quiz">
+        <img class="escrita" src="./ESCRITA.svg" alt="Escrita SEU QUIZ ONLINE">
+
+        <a class="botao_ranking" href="./ranking.html">
+            Ranking
+            <img class="trofeu" src="./trofeu-cortado-removebg-preview.svg" alt="">
+        </a>
     </header>
+
     <main>
-        <img src="./CodeQuest-logo-removebg.svg" alt="Logo CodeQuest | Cérebro amarelo com a escrita do Quiz">
-        <form action="./quiz.html" method="get">
-            <input type="text" id="nomeJogador" name="nomeJogador" placeholder="Nome do Jogador" required>
-            <button type="submit">Iniciar</button>
-        </form>
+        <div class="card">
+            <h1 class="frase_destaque">SE DESENVOLVA COM A GENTE</h1>
+
+            <form action="./quiz.html" method="get">
+                <input type="text" id="nomeJogador" name="nomeJogador" placeholder="Digite seu nome" required>
+                <button type="submit">INICIAR</button>
+            </form>
+        </div>
     </main>
 </body>
 </html>

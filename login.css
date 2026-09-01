@@ -1,20 +1,155 @@
 @import url(./style.css);
 
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* ===== Cabeçalho ===== */
 .cabecalho{
     display: flex;
-    justify-content: center;   
-    align-items: center; 
+    justify-content: space-between;
+    align-items: center;
+    gap: 10em;
+    margin: 0 auto;
+    padding: 0;
 }
+
+.logo{
+    width: 10em;
+    height: 10em;
+}
+
+.escrita{
+    width: 25em;
+    height: 25em;
+    order: 2;
+}
+
 .botao_ranking{
+    order: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4em;
     font-family: var(--titulo);
+    font-size: 22px;
+    line-height: 1;
     color: var(--texto);
     background-color: var(--botao-opcao);
     text-decoration: none;
-    padding: 20px 40px;
-    border-radius: 10px;
-    position: absolute;
-    top: 5%;
-    left: 50%;
-
+    border-radius: 26px;
+    padding: 0.50em 0.50em;
 }
 
+.trofeu{
+    width: 1.6em;
+    height: 1.6em;
+    flex-shrink: 0;
+}
+
+/* ===== Conteúdo principal ===== */
+main{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 20px clamp(20px, 5vw, 60px) 60px;
+}
+
+.card{
+    width: 100%;
+    max-width: 900px;
+    background-color: rgba(217, 217, 217, 0.07);
+    border: clamp(4px, 0.6vw, 8px) solid var(--texto);
+    border-radius: clamp(24px, 4vw, 60px);
+    padding: clamp(30px, 6vw, 70px) clamp(20px, 5vw, 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: clamp(20px, 4vw, 40px);
+}
+
+.frase_destaque{
+    font-family: var(--titulo);
+    font-weight: bold;
+    font-size: clamp(22px, 4vw, 42px);
+    color: var(--texto);
+    margin: 0;
+    max-width: 600px;
+    -webkit-animation: zoomPulse 2s ease-in-out infinite;
+    animation: zoomPulse 2s ease-in-out infinite;
+}
+
+@-webkit-keyframes zoomPulse {
+    0%, 100%{ -webkit-transform: scale(1); transform: scale(1); }
+    50%{ -webkit-transform: scale(1.05); transform: scale(1.05); }
+}
+@keyframes zoomPulse {
+    0%, 100%{ -webkit-transform: scale(1); transform: scale(1); }
+    50%{ -webkit-transform: scale(1.05); transform: scale(1.05); }
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 420px;
+}
+
+#nomeJogador{
+    width: 100%;
+    background-color: var(--botao-opcao);
+    border: none;
+    border-radius: 16px;
+    text-align: center;
+    font-family: var(--titulo);
+    font-size: clamp(15px, 1.8vw, 22px);
+    color: #FFFFFF;
+    padding: clamp(14px, 2vw, 22px);
+}
+
+#nomeJogador::placeholder{
+    color: #FFFFFF;
+    opacity: 1;
+}
+
+form button[type="submit"]{
+    width: 60%;
+    min-width: 160px;
+    background-color: var(--botao-opcao);
+    border: none;
+    border-radius: 16px;
+    font-family: var(--titulo);
+    font-size: clamp(15px, 1.8vw, 22px);
+    color: var(--texto);
+    padding: clamp(14px, 2vw, 22px);
+    cursor: pointer;
+}
+
+/* ===== Ajuste fino pra telas bem pequenas ===== */
+@media (max-width: 480px){
+    .cabecalho{
+        justify-content: center;
+        text-align: center;
+    }
+
+    .escrita{
+        order: 1;
+        width: 100%;
+    }
+
+    .logo{
+        order: 0;
+    }
+
+    .botao_ranking{
+        order: 2;
+    }
+}
