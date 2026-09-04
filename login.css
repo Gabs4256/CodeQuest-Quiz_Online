@@ -4,7 +4,6 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
 }
 
 /* ===== Cabeçalho ===== */
@@ -12,19 +11,19 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10em;
-    margin: 0 auto;
+    gap: 9em;
+    margin: 0;
     padding: 0;
 }
 
 .logo{
-    width: 10em;
-    height: 10em;
+    width: 12em;
+    height: 12em;
 }
 
 .escrita{
-    width: 25em;
-    height: 25em;
+    width: 20em;
+    height: 20em;
     order: 2;
 }
 
@@ -35,13 +34,13 @@ body{
     justify-content: center;
     gap: 0.4em;
     font-family: var(--titulo);
-    font-size: 22px;
+    font-size: 25px;
     line-height: 1;
     color: var(--texto);
     background-color: var(--botao-opcao);
     text-decoration: none;
     border-radius: 26px;
-    padding: 0.50em 0.50em;
+    padding: 1.2em
 }
 
 .trofeu{
@@ -57,16 +56,16 @@ main{
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 20px clamp(20px, 5vw, 60px) 60px;
+    margin-top: 0;
 }
 
 .card{
     width: 100%;
-    max-width: 900px;
+    max-width: 60%;
     background-color: rgba(217, 217, 217, 0.07);
     border: clamp(4px, 0.6vw, 8px) solid var(--texto);
     border-radius: clamp(24px, 4vw, 60px);
-    padding: clamp(30px, 6vw, 70px) clamp(20px, 5vw, 60px);
+    padding: 5em 10em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -133,23 +132,25 @@ form button[type="submit"]{
     cursor: pointer;
 }
 
-/* ===== Ajuste fino pra telas bem pequenas ===== */
-@media (max-width: 480px){
-    .cabecalho{
-        justify-content: center;
-        text-align: center;
-    }
+.botao_inciar{
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
 
-    .escrita{
-        order: 1;
-        width: 100%;
-    }
+.botao_inciar::before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #FFFFFF;
+    transition: width .8s;
+    border-radius: inherit;
+    z-index: -1;
+}
 
-    .logo{
-        order: 0;
-    }
-
-    .botao_ranking{
-        order: 2;
-    }
+.botao_inciar:hover::before{
+    width: 100%;
 }
