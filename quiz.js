@@ -6,12 +6,15 @@ if (nomeJogador) {
     localStorage.setItem("nomeJogador", nomeJogador);
 }
 
+
 const perguntas = [
+
     {
         pergunta: "Qual estrutura é utilizada para executar um bloco de código somente quando uma condição é verdadeira?",
         alternativas: ["for", "if", "print", "while"],
         resposta: 1
     },
+
     {
         pergunta: "O que é um algoritmo?",
         alternativas: [
@@ -22,6 +25,7 @@ const perguntas = [
         ],
         resposta: 1
     },
+
     {
         pergunta: "Observe: idade = 20; if idade >= 18: print('Maior de idade'). O que será exibido?",
         alternativas: [
@@ -32,6 +36,7 @@ const perguntas = [
         ],
         resposta: 2
     },
+
     {
         pergunta: "No código 'if idade >= 18' qual é o erro de sintaxe?",
         alternativas: [
@@ -42,6 +47,7 @@ const perguntas = [
         ],
         resposta: 1
     },
+
     {
         pergunta: "Um programa deveria somar dois números, mas possui 'resultado = a - b'. O que deve ser feito?",
         alternativas: [
@@ -52,6 +58,7 @@ const perguntas = [
         ],
         resposta: 0
     },
+
     {
         pergunta: "Qual estrutura pode ser utilizada para repetir um bloco de código enquanto uma condição for verdadeira?",
         alternativas: [
@@ -62,6 +69,7 @@ const perguntas = [
         ],
         resposta: 2
     },
+
     {
         pergunta: "Qual sequência representa melhor um algoritmo para calcular a média de duas notas?",
         alternativas: [
@@ -72,6 +80,7 @@ const perguntas = [
         ],
         resposta: 1
     },
+
     {
         pergunta: "No código 'print(nome' qual é o problema?",
         alternativas: [
@@ -82,6 +91,7 @@ const perguntas = [
         ],
         resposta: 1
     },
+
     {
         pergunta: "Um programa verifica se uma pessoa é maior de idade usando 'if idade < 18: print(\"Maior de idade\")'. Qual é o erro?",
         alternativas: [
@@ -92,6 +102,7 @@ const perguntas = [
         ],
         resposta: 2
     },
+
     {
         pergunta: "Qual será o resultado? numero = 10; if numero > 5: print('A') else: print('B')",
         alternativas: [
@@ -102,48 +113,68 @@ const perguntas = [
         ],
         resposta: 0
     }
+
 ];
+
 
 let perguntaAtual = 0;
 let pontuacao = 0;
 let respostaSelecionada = false;
 
 
-// Elementos da página
 const tituloPergunta = document.querySelector(".pergunta h1");
-const textoPergunta = document.querySelector(".pergunta p");
+const textoPergunta = document.querySelector(".pergunta h2");
+const numeroPergunta = document.querySelector(".numero-pergunta");
+
 const contador = document.querySelector(".contador");
+
 const alternativas = document.querySelectorAll(".alternativa");
+
 const botaoProxima = document.querySelector(".proxima");
 
 
-// Carrega a pergunta
 function carregarPergunta() {
 
     const pergunta = perguntas[perguntaAtual];
 
-    contador.textContent = `${perguntaAtual + 1}/${perguntas.length}`;
 
-    tituloPergunta.textContent = `Pergunta ${perguntaAtual + 1}`;
+    contador.textContent =
+        `${perguntaAtual + 1}/${perguntas.length}`;
 
-    textoPergunta.textContent = pergunta.pergunta;
+
+    numeroPergunta.textContent =
+        `QUESTÃO ${String(perguntaAtual + 1).padStart(2, "0")}`;
+
+
+    tituloPergunta.textContent =
+        `Pergunta ${perguntaAtual + 1}`;
+
+
+    textoPergunta.textContent =
+        pergunta.pergunta;
+
 
     alternativas.forEach((botao, indice) => {
-        botao.textContent = pergunta.alternativas[indice];
+
+        botao.textContent =
+            `${String.fromCharCode(65 + indice)}) ${pergunta.alternativas[indice]}`;
+
 
         botao.disabled = false;
 
         botao.classList.remove("correta");
         botao.classList.remove("errada");
+
     });
+
 
     respostaSelecionada = false;
 
     botaoProxima.disabled = true;
+
 }
 
 
-// Seleciona uma alternativa
 alternativas.forEach((botao, indice) => {
 
     botao.addEventListener("click", () => {
@@ -152,50 +183,72 @@ alternativas.forEach((botao, indice) => {
             return;
         }
 
+
         respostaSelecionada = true;
 
+
         const pergunta = perguntas[perguntaAtual];
+
 
         if (indice === pergunta.resposta) {
 
             botao.classList.add("correta");
+
             pontuacao++;
 
         } else {
 
             botao.classList.add("errada");
 
-            alternativas[pergunta.resposta].classList.add("correta");
+            alternativas[pergunta.resposta]
+                .classList.add("correta");
+
         }
 
+
         alternativas.forEach(botao => {
+
             botao.disabled = true;
+
         });
 
+
         botaoProxima.disabled = false;
+
     });
 
 });
 
 
-// Próxima pergunta
 botaoProxima.addEventListener("click", () => {
 
     perguntaAtual++;
+
 
     if (perguntaAtual < perguntas.length) {
 
         carregarPergunta();
 
     } else {
-        localStorage.setItem("pontuacao", pontuacao);
-        localStorage.setItem("totalPerguntas", perguntas.length);
 
-        window.location.href = "resultado.html";
+        localStorage.setItem(
+            "pontuacao",
+            pontuacao
+        );
+
+
+        localStorage.setItem(
+            "totalPerguntas",
+            perguntas.length
+        );
+
+
+        window.location.href =
+            "resultado.html";
+
     }
 
 });
 
 
-// Inicia o quiz
 carregarPergunta();
