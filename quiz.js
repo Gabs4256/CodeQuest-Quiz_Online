@@ -1,3 +1,11 @@
+const parametros = new URLSearchParams(window.location.search);
+
+const nomeJogador = parametros.get("nomeJogador");
+
+if (nomeJogador) {
+    localStorage.setItem("nomeJogador", nomeJogador);
+}
+
 const perguntas = [
     {
         pergunta: "Qual estrutura é utilizada para executar um bloco de código somente quando uma condição é verdadeira?",
@@ -180,10 +188,10 @@ botaoProxima.addEventListener("click", () => {
         carregarPergunta();
 
     } else {
+        localStorage.setItem("pontuacao", pontuacao);
+        localStorage.setItem("totalPerguntas", perguntas.length);
 
-        alert(`Quiz finalizado! Sua pontuação foi ${pontuacao}/${perguntas.length}.`);
-
-        window.location.href = "ranking.html";
+        window.location.href = "resultado.html";
     }
 
 });
