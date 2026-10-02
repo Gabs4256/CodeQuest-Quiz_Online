@@ -128,6 +128,8 @@ const numeroPergunta = document.querySelector(".numero-pergunta");
 
 const contador = document.querySelector(".contador");
 
+const barraProgresso = document.querySelector(".barra-progresso");
+
 const alternativas = document.querySelectorAll(".alternativa");
 
 const botaoProxima = document.querySelector(".proxima");
@@ -156,8 +158,9 @@ function carregarPergunta() {
 
     alternativas.forEach((botao, indice) => {
 
-        botao.textContent =
-            `${String.fromCharCode(65 + indice)}) ${pergunta.alternativas[indice]}`;
+        // Só troca o texto; a letra (A, B, C, D) já está no HTML
+        botao.querySelector(".texto-alternativa").textContent =
+            pergunta.alternativas[indice];
 
 
         botao.disabled = false;
@@ -166,6 +169,11 @@ function carregarPergunta() {
         botao.classList.remove("errada");
 
     });
+
+
+    // Barra de progresso avança a cada pergunta
+    barraProgresso.style.width =
+        `${((perguntaAtual + 1) / perguntas.length) * 100}%`;
 
 
     respostaSelecionada = false;

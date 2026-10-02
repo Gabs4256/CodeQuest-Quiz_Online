@@ -7,7 +7,7 @@
 
     <title>CodeQuest - Quiz</title>
 
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
@@ -17,16 +17,22 @@
         <header class="quiz-header">
 
             <img
-                src="CodeQuest-logo-removebg.svg"
+                src="./CodeQuest-logo_sfundo.svg"
                 alt="Logo CodeQuest"
                 class="logo"
             >
 
-            <div class="contador">
-                1/10
+            <div class="quiz-status">
+                <span class="status-text">PROGRESSO</span>
+                <div class="contador">1/10</div>
             </div>
 
         </header>
+
+
+        <div class="barra-container">
+            <div class="barra-progresso"></div>
+        </div>
 
 
         <section class="pergunta">
@@ -46,27 +52,37 @@
         <section class="alternativas">
 
             <button class="alternativa">
-                A) for
+                <span class="letra">A</span>
+                <span class="texto-alternativa">for</span>
             </button>
 
             <button class="alternativa">
-                B) if
+                <span class="letra">B</span>
+                <span class="texto-alternativa">if</span>
             </button>
 
             <button class="alternativa">
-                C) print
+                <span class="letra">C</span>
+                <span class="texto-alternativa">print</span>
             </button>
 
             <button class="alternativa">
-                D) while
+                <span class="letra">D</span>
+                <span class="texto-alternativa">while</span>
             </button>
 
         </section>
 
 
-        <button class="proxima">
-            Próxima pergunta →
-        </button>
+        <footer class="quiz-footer">
+
+            <p class="dica">Escolha uma alternativa para continuar</p>
+
+            <button class="proxima">
+                Próxima pergunta <span>→</span>
+            </button>
+
+        </footer>
 
     </main>
 

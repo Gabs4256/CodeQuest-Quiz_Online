@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CodeQuest - Ranking</title>
+
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./final.css">
+</head>
+
+<body>
+
+    <main class="quiz-container final">
+
+        <header class="quiz-header">
+            <img
+                src="./CodeQuest-logo_sfundo.svg"
+                alt="Logo CodeQuest"
+                class="logo"
+            >
+            <h1 class="titulo-pagina">Ranking</h1>
+        </header>
+
+        <ol class="lista-ranking" id="lista"></ol>
+
+        <p class="vazio" id="vazio" hidden>
+            Ninguém jogou ainda. Faça o quiz para entrar no ranking.
+        </p>
+
+        <div class="acoes">
+            <a class="botao botao-principal" href="./login.html">Jogar</a>
+            <button class="botao botao-secundario" id="limpar" type="button">Limpar ranking</button>
+        </div>
+
+    </main>
+
+    <script src="ranking.js"></script>
+
+</body>
+
+</html>
