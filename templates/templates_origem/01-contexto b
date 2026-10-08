@@ -1,0 +1,61 @@
+# Passos 1 a 3 — Contexto, minimundo e requisitos
+
+Marco M1. Copiem para `entregas/01-contexto.md`.
+
+## 1. Introdução e contexto
+
+Em um parágrafo: o que é o Tech Trivia e qual o objetivo deste banco:
+    Tech Trivia é o nome de um jogo de quiz que testa o conhecimento dos participantes na área de tecnologia, envolvendo história, resolução de problemas, conhecimentos gerais e depuração. Esse banco gera uma trivia sobre conhecimentos da área tech, tendo como objetivo final armazenar e gerenciar as perguntas para que o participante analise o código exibido e selecione a alternativa correta que representa a saída ou o erro que está proposto no código, além de gerenciar a pontuação para manter o ranking das partidas.
+
+Escopo. Listem só o que o banco faz e o que fica de fora.
+
+|         O banco faz                          |                         O banco não faz                                          |
+| :---                                         | :---                                                                             |
+| Capta os dados básicos dos jogadores por partida | Não tem opção de nível de dificuldade no menu (as perguntas vêm misturadas)      |
+| Mostra ranking das melhores pontuações       | O cadastro dos jogadores é exclusivamente por partida, não contém contas salvas  |
+| Cada questão possui sua pontuação por nível  | Não faz controle de tempo limite para responder cada questão                     |
+| A cada questão certa a pontuação é somada    | Não gera trechos de código ou erros sozinhos (o desenvolvedor é quem escreve)    |
+| Cada partida pode ter apenas 3 erros         | Não possui interface gráfica própria (as consultas são consumidas pela Web)      |
+
+Usuários. Quem usa o sistema e o que cada um faz com os dados. Não criem tabela de usuário se nenhum requisito pedir cadastro, senha ou sessão.
+
+| Usuário |      O que faz?    |
+| :---    | :---               |
+| Nome (Jogador) | Escolhe um nickname temporário, responde ao quiz de códigos e vai para o ranking |
+
+| Quem cadastra perguntas  | O que faz? |
+| :---                     | :---       |
+| Desenvolvedor do Sistema | Insere, altera, deleta e gerencia o banco de perguntas, categorias e alternativas |
+
+## 2. Minimundo
+
+"Somos uma comunidade de desenvolvedores e queremos um gerador de trivia interativo focado em depuração de código para testar programadores. O sistema deverá pedir obrigatoriamente o nome (*nickname*) do jogador que irá iniciar a partida e, já na tela de início, deve aparecer um botão para ver o ranking dos jogadores com as melhores pontuações. Cada partida inicia imediatamente após o jogador escolher seu nome e clicar em iniciar. As questões são baseadas em linhas de código com falhas, e o jogador deve escolher a opção que representa o erro contido no código ou a saída que o código deverá imprimir. As questões vão de A até D, sendo exatamente quatro alternativas por pergunta, onde exatamente uma é a correta. No futuro, queremos a flexibilidade de ter cinco alternativas, ou só duas, sem mexer na estrutura da ficha da pergunta.
+
+Cada questão possui uma pontuação específica associada a exatamente um nível de dificuldade, escolhido em um conjunto fixo: fácil vale exatamente 1 ponto, médio vale exatamente 2 pontos e difícil vale exatamente 3 pontos. Cada questão pertence a uma única categoria (linguagem de programação, como Python ou JavaScript) e não existem duas categorias com o mesmo nome. Toda questão deve registrar o idioma em que foi escrita vindo de um conjunto controlado (como pt ou en) com código e descrição. Cada questão cita uma única fonte/publicador de referência de onde o trecho de código foi adaptado (como uma documentação técnica ou livro), contendo título e URL que não se repete. O jogador acumula pontos a cada acerto, mas cada partida pode ter apenas 3 erros, sendo encerrada imediatamente pelo sistema ao atingir esse limite e salvando o nome e os pontos do jogador no histórico."
+
+## 3. Requisitos e regras de negócio
+
+Cada RD01–RD11 e cada RA01–RA07 entra numa linha. Não deixem código de fora.
+
+| Código | Texto do requisito | Tipo |
+| :--- | :--- | :--- |
+| **RD01** | Toda partida exige a inserção obrigatória de um *nickname* identificador para o jogador. | regra de negócio |
+| **RD02** | O *nickname* do jogador e sua respectiva pontuação final são armazenados de forma única por partida para compor o ranking. | regra de negócio |
+| **RD03** | Toda pergunta possui um trecho de código com erro, enunciado e explicação de gabarito obrigatórios. | regra de negócio |
+| **RD04** | Cada pergunta pertence a exatamente uma categoria de tecnologia. Não há duas categorias com o mesmo nome. | regra de negócio |
+| **RD05** | Cada questão possui exatamente um nível de dificuldade associado, pertencente a um conjunto fixo (Fácil, Médio, Difícil). | regra de negócio |
+| **RD06** | A pontuação por acerto deve seguir estritamente os pesos definidos por nível: Fácil = 1, Médio = 2, Difícil = 3. | regra de negócio |
+| **RD07** | Toda questão possui alternativas identificadas por letras (A até D). A mesma letra não se repete na mesma questão. | regra de negócio |
+| **RD08** | Exatamente uma única alternativa de cada questão é marcada como a resposta correta (gabarito). | regra de negócio |
+| **RD09** | O banco aceita, no futuro, mais ou menos de quatro alternativas sem refazer a estrutura da pergunta. | funcional |
+| **RD10** | Cada questão cita uma única fonte/publicador de referência para o trecho de código, e a URL é única. | regra de negócio |
+| **RD11** | O idioma de cada pergunta deve vir de um conjunto controlado contendo código e descrição. | regra de negócio |
+| **RA01** | Listar as categorias em ordem alfabética, com a quantidade de perguntas. | funcional |
+| **RA02** | Sortear uma pergunta de qualquer categoria ou de uma categoria escolhida para iniciar a partida. | funcional |
+| **RA03** | Exibir título, enunciado, trecho de código e as alternativas de A até D de uma pergunta. | funcional |
+| **RA04** | Validar se a alternativa escolhida pelo jogador é a correta para somar a pontuação correspondente. | funcional |
+| **RA05** | Controlar o limite de erros da partida e encerrá-la imediatamente ao atingir o 3º erro cometido. | funcional |
+| **RA06** | Exibir a explicação do erro e a fonte completa (título, publicador, URL e idioma) após a resposta. | funcional |
+| **RA07** | Listar o ranking ordenado com as maiores pontuações e *nicknames* registrados na plataforma. | funcional |
+| **RNF01** | O SGBD é PostgreSQL. | não funcional |
+| **RNF02** | Integridade: *nickname* do jogador obrigatório, nome de categoria único, URL de fonte única, trechos da pergunta obrigatórios e chaves estrangeiras preenchidas. | não funcional |
