@@ -1,33 +1,28 @@
-const nome = localStorage.getItem("nomeJogador");
-const pontuacao = localStorage.getItem("pontuacao");
-const total = localStorage.getItem("totalPerguntas");
+const pontos = Number(localStorage.getItem("pontuacao")) || 0;
+const total = Number(localStorage.getItem("totalPerguntas")) || 10;
+const nome = localStorage.getItem("nomeJogador") || "Jogador";
 
-const nomeResultado = document.querySelector("#nomeResultado");
-const pontuacaoElemento = document.querySelector("#pontuacao");
-const mensagemResultado = document.querySelector("#mensagemResultado");
 
-nomeResultado.textContent = `Parabéns, ${nome}!`;
+let emoji;
+let mensagem;
 
-pontuacaoElemento.textContent = `${pontuacao}/${total}`;
-
-if (pontuacao >= 8) {
-    mensagemResultado.textContent = "Excelente! Você mandou muito bem! 🚀";
-} else if (pontuacao >= 5) {
-    mensagemResultado.textContent = "Muito bom! Continue praticando! 💪";
+if (pontos >= 9) {
+    emoji = "🏆";
+    mensagem = "Incrível! Você domina a lógica de programação!";
+} else if (pontos >= 7) {
+    emoji = "🎉";
+    mensagem = "Muito bem! Você está no caminho certo!";
+} else if (pontos >= 5) {
+    emoji = "👏";
+    mensagem = "Bom trabalho! Mais um pouco de prática e você chega lá.";
 } else {
-    mensagemResultado.textContent = "Não desanime! A prática leva à evolução! 📚";
+    emoji = "📚";
+    mensagem = "Não desanime! A prática leva à evolução!";
 }
 
 
-document.querySelector("#jogarNovamente").addEventListener("click", () => {
-
-    window.location.href = "quiz.html";
-
-});
-
-
-document.querySelector("#verRanking").addEventListener("click", () => {
-
-    window.location.href = "ranking.html";
-
-});
+document.getElementById("emoji").textContent = emoji;
+document.getElementById("nome").textContent = `Parabéns, ${nome}!`;
+document.getElementById("pontos").textContent = pontos;
+document.getElementById("total").textContent = total;
+document.getElementById("mensagem").textContent = mensagem;

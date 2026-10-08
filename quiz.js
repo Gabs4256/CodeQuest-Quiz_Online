@@ -251,6 +251,25 @@ botaoProxima.addEventListener("click", () => {
         );
 
 
+        // Salva a partida no ranking
+        let ranking = [];
+
+        try {
+            ranking = JSON.parse(localStorage.getItem("codequestRanking")) || [];
+        } catch (erro) {
+            ranking = [];
+        }
+
+        ranking.push({
+            nome: localStorage.getItem("nomeJogador") || "Jogador",
+            pontos: pontuacao,
+            total: perguntas.length,
+            data: Date.now()
+        });
+
+        localStorage.setItem("codequestRanking", JSON.stringify(ranking));
+
+
         window.location.href =
             "resultado.html";
 

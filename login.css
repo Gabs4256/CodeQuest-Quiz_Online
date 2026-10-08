@@ -32,7 +32,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.4em;
+    gap: 0.5em;
     font-family: var(--titulo);
     font-size: 25px;
     line-height: 1;
@@ -40,13 +40,15 @@ body{
     background-color: var(--botao-opcao);
     text-decoration: none;
     border-radius: 26px;
-    padding: 1.2em
+    padding: 0.8em 1.4em;
 }
 
+/* Troféu maior (era 1.6em) */
 .trofeu{
-    width: 1.6em;
-    height: 1.6em;
+    width: 2.4em;
+    height: 2.4em;
     flex-shrink: 0;
+    object-fit: contain;
 }
 
 /* ===== Conteúdo principal ===== */

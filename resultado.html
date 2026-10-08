@@ -7,38 +7,42 @@
 
     <title>CodeQuest - Resultado</title>
 
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./final.css">
 </head>
 
 <body>
 
-    <main class="resultado-container">
+    <main class="quiz-container final">
 
-        <div class="resultado-card">
+        <header class="quiz-header">
+            <img
+                src="./CodeQuest-logo_sfundo.svg"
+                alt="Logo CodeQuest"
+                class="logo"
+            >
+        </header>
 
-            <h1>🎉 Quiz finalizado!</h1>
+        <section class="resultado">
 
-            <p id="nomeResultado"></p>
+            <p class="resultado-emoji" id="emoji">🎉</p>
 
-            <div class="pontuacao">
-                <span id="pontuacao"></span>
+            <h1 class="titulo-final">Quiz finalizado!</h1>
+
+            <p class="resultado-nome" id="nome"></p>
+
+            <p class="placar">
+                <span id="pontos">0</span><small>/<span id="total">10</span></small>
+            </p>
+
+            <p class="resultado-msg" id="mensagem"></p>
+
+            <div class="acoes">
+                <a class="botao botao-principal" href="./login.html">Jogar novamente</a>
+                <a class="botao botao-secundario" href="./ranking.html">Ver ranking</a>
             </div>
 
-            <p id="mensagemResultado"></p>
-
-            <div class="botoes-resultado">
-
-                <button id="jogarNovamente">
-                    JOGAR NOVAMENTE
-                </button>
-
-                <button id="verRanking">
-                    VER RANKING
-                </button>
-
-            </div>
-
-        </div>
+        </section>
 
     </main>
 

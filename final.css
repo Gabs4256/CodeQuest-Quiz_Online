@@ -1,0 +1,243 @@
+/* =========================================
+   TELAS FINAIS: RESULTADO E RANKING
+   Usa as variáveis e o reset do style.css
+========================================= */
+
+.final {
+    max-width: 640px;
+}
+
+.final .quiz-header {
+    margin-bottom: 40px;
+}
+
+
+/* =========================================
+   RESULTADO
+========================================= */
+
+.resultado {
+    text-align: center;
+}
+
+.resultado-emoji {
+    font-size: 64px;
+    line-height: 1;
+    margin-bottom: 14px;
+}
+
+.titulo-final {
+    font-family: var(--titulo);
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--texto);
+    margin-bottom: 8px;
+}
+
+.resultado-nome {
+    font-size: 17px;
+    color: var(--cinza);
+    margin-bottom: 22px;
+}
+
+.placar {
+    font-family: var(--titulo);
+    font-size: 96px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--texto);
+    margin-bottom: 18px;
+}
+
+.placar small {
+    font-size: 36px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.resultado-msg {
+    max-width: 440px;
+    margin: 0 auto 34px;
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--branco);
+}
+
+
+/* =========================================
+   BOTÕES
+========================================= */
+
+.acoes {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 34px;
+}
+
+.resultado .acoes {
+    margin-top: 0;
+}
+
+.botao {
+    display: inline-block;
+    padding: 13px 24px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    font-family: var(--corpo-texto);
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.botao:hover {
+    transform: translateY(-2px);
+}
+
+.botao-principal {
+    background: var(--texto);
+    color: #2E1B50;
+}
+
+.botao-principal:hover {
+    filter: brightness(1.05);
+}
+
+.botao-secundario {
+    background: transparent;
+    color: var(--branco);
+    border-color: var(--borda);
+}
+
+.botao-secundario:hover {
+    border-color: var(--texto);
+    color: var(--texto);
+}
+
+.botao:focus-visible {
+    outline: 3px solid var(--branco);
+    outline-offset: 3px;
+}
+
+
+/* =========================================
+   RANKING
+========================================= */
+
+.titulo-pagina {
+    font-family: var(--titulo);
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.lista-ranking {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.lista-ranking li {
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    background: var(--fundo-opcao);
+}
+
+.posicao {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    background: rgba(255, 209, 102, 0.08);
+    color: var(--texto);
+    font-family: var(--titulo);
+    font-size: 17px;
+    font-weight: 600;
+}
+
+/* Pódio: ouro, prata e bronze */
+.lista-ranking li:nth-child(1) {
+    border-color: rgba(255, 209, 102, 0.55);
+    background: rgba(255, 209, 102, 0.08);
+}
+
+.lista-ranking li:nth-child(1) .posicao {
+    background: #FFD166;
+    color: #2E1B50;
+}
+
+.lista-ranking li:nth-child(2) .posicao {
+    background: #D8D2E8;
+    color: #2E1B50;
+}
+
+.lista-ranking li:nth-child(3) .posicao {
+    background: #E0A15C;
+    color: #2E1B50;
+}
+
+.nome-jogador {
+    font-size: 16px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.pontos-jogador {
+    font-family: var(--titulo);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--texto);
+}
+
+.pontos-jogador small {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.vazio {
+    padding: 32px 16px;
+    text-align: center;
+    color: var(--cinza);
+    border: 1px dashed var(--borda);
+    border-radius: 12px;
+}
+
+
+/* =========================================
+   CELULAR
+========================================= */
+
+@media (max-width: 700px) {
+
+    .placar {
+        font-size: 76px;
+    }
+
+    .titulo-final {
+        font-size: 28px;
+    }
+
+    .lista-ranking li {
+        grid-template-columns: 40px 1fr auto;
+        gap: 10px;
+        padding: 10px 12px;
+    }
+
+    .acoes .botao {
+        flex: 1;
+        text-align: center;
+    }
+
+}
