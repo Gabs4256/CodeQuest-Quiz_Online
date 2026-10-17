@@ -1,82 +1,88 @@
-const CHAVE_RANKING = "codequestRanking";
-
 const lista = document.getElementById("lista");
 const vazio = document.getElementById("vazio");
 const botaoLimpar = document.getElementById("limpar");
 
+// Guarda a mensagem original de "ranking vazio" para poder restaurar depois
+const htmlVazio = vazio.innerHTML;
 
-function lerRanking() {
+// Busca o ranking no servidor. Devolve null se der erro.
+async function lerRanking() {
+  try {
+    const resposta = await fetch("/api/ranking");
 
-    try {
-
-        const dados = JSON.parse(localStorage.getItem(CHAVE_RANKING));
-
-        if (!Array.isArray(dados)) {
-            return [];
-        }
-
-        return dados.filter(item => item && typeof item.pontos === "number");
-
-    } catch (erro) {
-
-        return [];
-
+    if (!resposta.ok) {
+      return null;
     }
 
-}
+    const dados = await resposta.json();
 
-
-function mostrarRanking() {
-
-    lista.innerHTML = "";
-
-    const ranking = lerRanking()
-        .sort((a, b) => b.pontos - a.pontos || a.data - b.data)
-        .slice(0, 10);
-
-
-    vazio.hidden = ranking.length > 0;
-    botaoLimpar.hidden = ranking.length === 0;
-
-
-    ranking.forEach((item, indice) => {
-
-        const linha = document.createElement("li");
-
-        const posicao = document.createElement("span");
-        posicao.className = "posicao";
-        posicao.textContent = indice + 1;
-
-        const nome = document.createElement("span");
-        nome.className = "nome-jogador";
-        nome.textContent = item.nome || "Jogador";
-
-        const pontos = document.createElement("span");
-        pontos.className = "pontos-jogador";
-        pontos.textContent = item.pontos;
-
-        const total = document.createElement("small");
-        total.textContent = `/${item.total || 10}`;
-        pontos.appendChild(total);
-
-        linha.append(posicao, nome, pontos);
-        lista.appendChild(linha);
-
-    });
-
-}
-
-
-botaoLimpar.addEventListener("click", () => {
-
-    if (confirm("Apagar todo o ranking?")) {
-
-        localStorage.removeItem(CHAVE_RANKING);
-        mostrarRanking();
-
+    if (!Array.isArray(dados)) {
+      return null;
     }
 
+    return dados.filter(item => item && typeof item.pontos === "number");
+  } catch (erro) {
+    return null;
+  }
+}
+
+async function mostrarRanking() {
+  lista.innerHTML = "";
+
+  // O servidor já devolve ordenado e limitado ao top 10
+  const ranking = await lerRanking();
+
+  if (ranking === null) {
+    vazio.textContent = "Não foi possível carregar o ranking. Verifique se o servidor está rodando.";
+    vazio.hidden = false;
+    botaoLimpar.hidden = true;
+    return;
+  }
+
+  vazio.innerHTML = htmlVazio;
+  vazio.hidden = ranking.length > 0;
+  botaoLimpar.hidden = ranking.length === 0;
+
+  ranking.forEach((item, indice) => {
+    const linha = document.createElement("li");
+
+    const posicao = document.createElement("span");
+    posicao.className = "posicao";
+    posicao.textContent = indice + 1;
+
+    const nome = document.createElement("span");
+    nome.className = "nome-jogador";
+    nome.textContent = item.nome || "Jogador";
+
+    const pontos = document.createElement("span");
+    pontos.className = "pontos-jogador";
+    pontos.textContent = item.pontos;
+
+    const total = document.createElement("small");
+    total.textContent = `/${item.total || 10}`;
+
+    pontos.appendChild(total);
+    linha.append(posicao, nome, pontos);
+    lista.appendChild(linha);
+  });
+}
+
+botaoLimpar.addEventListener("click", async () => {
+  if (!confirm("Apagar todo o ranking?")) {
+    return;
+  }
+
+  try {
+    const resposta = await fetch("/api/ranking", { method: "DELETE" });
+
+    if (!resposta.ok) {
+      throw new Error("Falha ao limpar");
+    }
+  } catch (erro) {
+    alert("Não foi possível limpar o ranking.");
+  }
+
+  mostrarRanking();
 });
-
 
 mostrarRanking();
