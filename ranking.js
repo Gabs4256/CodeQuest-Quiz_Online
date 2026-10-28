@@ -67,22 +67,4 @@ async function mostrarRanking() {
   });
 }
 
-botaoLimpar.addEventListener("click", async () => {
-  if (!confirm("Apagar todo o ranking?")) {
-    return;
-  }
-
-  try {
-    const resposta = await fetch("/api/ranking", { method: "DELETE" });
-
-    if (!resposta.ok) {
-      throw new Error("Falha ao limpar");
-    }
-  } catch (erro) {
-    alert("Não foi possível limpar o ranking.");
-  }
-
-  mostrarRanking();
-});
-
 mostrarRanking();

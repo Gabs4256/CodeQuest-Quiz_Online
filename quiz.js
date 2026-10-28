@@ -26,7 +26,7 @@ const botaoProxima = document.querySelector(".proxima");
 
 async function carregarPerguntas() {
   try {
-    const resposta = await fetch("/api/perguntas");
+    const resposta = await fetch(`${API_BASE_URL}/api/perguntas`);
 
     if (!resposta.ok) {
       throw new Error("Falha ao buscar as perguntas");
@@ -133,13 +133,13 @@ botaoProxima.addEventListener("click", async () => {
   let totalFinal = perguntas.length;
 
   try {
-    const resposta = await fetch("/api/partidas", {
+    const resposta = await fetch(`${API_BASE_URL}/api/partidas`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         nome: localStorage.getItem("nomeJogador") || "Jogador",
-        respostas: respostasDadas
-      })
+        respostas: respostasDadas,
+      }),
     });
 
     if (!resposta.ok) {
