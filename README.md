@@ -88,8 +88,8 @@ Pré-requisitos: Node.js instalado, um projeto no Supabase com os scripts SQL j�
    ```
  
    O terminal deve mostrar `Servidor rodando na porta 3000`. Para testar, abra `http://localhost:3000/api/perguntas` no navegador.
-3. Abra o front-end: no VS Code, clique com o botão direito em `login.html` e escolha **Open with Live Server**. O site abre em `http://127.0.0.1:5500/login.html`.
-O endereço da API usado pelo front fica em `config.js`:
+3. Abra o front-end: no VS Code, clique com o botão direito em `raiz/login.html` e escolha **Open with Live Server**. O site abre em `http://127.0.0.1:5500/raiz/login.html`.
+O endereço da API usado pelo front fica em `js/config.js`:
  
 ```js
 const API_BASE_URL = "http://localhost:3000";
