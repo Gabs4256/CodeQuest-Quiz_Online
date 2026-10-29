@@ -1,6 +1,5 @@
 const lista = document.getElementById("lista");
 const vazio = document.getElementById("vazio");
-const botaoLimpar = document.getElementById("limpar");
 
 // Guarda a mensagem original de "ranking vazio" para poder restaurar depois
 const htmlVazio = vazio.innerHTML;
@@ -8,7 +7,7 @@ const htmlVazio = vazio.innerHTML;
 // Busca o ranking no servidor. Devolve null se der erro.
 async function lerRanking() {
   try {
-    const resposta = await fetch("/api/ranking");
+    const resposta = await fetch(`${API_BASE_URL}/api/ranking`);
 
     if (!resposta.ok) {
       return null;
@@ -20,7 +19,7 @@ async function lerRanking() {
       return null;
     }
 
-    return dados.filter(item => item && typeof item.pontos === "number");
+    return dados.filter((item) => item && typeof item.pontos === "number");
   } catch (erro) {
     return null;
   }
@@ -33,15 +32,14 @@ async function mostrarRanking() {
   const ranking = await lerRanking();
 
   if (ranking === null) {
-    vazio.textContent = "Não foi possível carregar o ranking. Verifique se o servidor está rodando.";
+    vazio.textContent =
+      "Não foi possível carregar o ranking. Verifique se o servidor está rodando.";
     vazio.hidden = false;
-    botaoLimpar.hidden = true;
     return;
   }
 
   vazio.innerHTML = htmlVazio;
   vazio.hidden = ranking.length > 0;
-  botaoLimpar.hidden = ranking.length === 0;
 
   ranking.forEach((item, indice) => {
     const linha = document.createElement("li");
