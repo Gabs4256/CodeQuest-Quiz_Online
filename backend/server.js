@@ -83,10 +83,18 @@ async function verRanking(res) {
 
   if (error) throw error;
 
+  const { data: perguntas, error: erroP } = await supabase
+    .from("pergunta")
+    .select("pontuacao");
+
+  if (erroP) throw erroP;
+
+  const total = perguntas.reduce((soma, p) => soma + p.pontuacao, 0);
+
   return enviarJSON(
     res,
     200,
-    data.map((p) => ({ nome: p.nome, pontos: p.ponto, total: 10 })),
+    data.map((p) => ({ nome: p.nome, pontos: p.ponto, total })),
   );
 }
 
@@ -96,8 +104,18 @@ async function salvarPartida(req, res) {
   const dados = await lerCorpoJSON(req);
 
   if (!dados || !Array.isArray(dados.respostas)) {
-    return enviarJSON(res, 400, { erro: "Envie {nome, respostas}." });
-  }
+  return enviarJSON(res, 400, { erro: "Envie {nome, respostas}." });
+}
+
+const ids = dados.respostas.map((r) => r?.pergunta_id);
+if (new Set(ids).size !== ids.length) {
+  return enviarJSON(res, 400, { erro: "Pergunta repetida." });
+}
+if (dados.respostas.some((r) => !Number.isInteger(r?.ordem))) {
+  return enviarJSON(res, 400, { erro: "Alternativa inválida." });
+}
+
+// partida.nome é VARCHAR(50)
 
   // partida.nome é VARCHAR(50)
   const nome =
