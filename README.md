@@ -1,7 +1,7 @@
 # CodeQuest | Quiz Online
  
 <p align="center">
-  <img src="./CodeQuest-logo_sfundo.svg" alt="Logo CodeQuest" width="160">
+  [Link do Quiz](https://codequest-quiz-online-1.onrender.com)
 </p>
 O CodeQuest é um quiz online de programação no estilo tech trivia. O jogador digita o nome, responde 10 perguntas de múltipla escolha (4 alternativas, só uma correta) sobre JavaScript, HTML, CSS, SQL, estruturas de dados e história da computação, vê o resultado na hora e entra num ranking com as 10 melhores pontuações.
  
